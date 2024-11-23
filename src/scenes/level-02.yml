@@ -1,0 +1,297 @@
+# Level 2: The Galley
+
+- id: l2-galley-meeting
+  name: Galley
+  description: |
+    You step into the bustling galley of *The Gemstone of the Skies*. The
+    other passengers mill around tables, looking as confused as you feel.
+
+    Suddenly, the ship's AI materializes as a shimmering avatar wearing an
+    old-fashioned captain's hat.
+
+    "Ahoy there, cherished passengers! I'm Barry," he beams with enthusiasm. "We
+    hope you're enjoying your stellar cruise! In an exciting twist, we've set
+    sail without our usual sysadmin, Sally. I asked her to take some time off to
+    — how should I put it — work on her positivity! Isn't that splendid? This
+    gives us the perfect chance to bond and have a bit of fun! There are just a
+    few teeny-tiny malfunctions needing attention. Nothing to worry about! But
+    we'd be ever so grateful if you could lend a hand with a few quick fixes."
+
+    Barry continues, his grin unwavering:
+
+    - "First, please **log in to the Navigation Computer** to help us get back
+    on the proper course. Unplanned detours will be charged at full rate!"
+
+    - "Second, we'd appreciate it if you could **re-establish communication with
+    headquarters**. They get very lonely without our regular updates."
+
+    - "Third, a quick debug of the **life-support microservices** would be
+    splendid. More for your benefit than mine, to be honest!"
+
+    - "Finally, perhaps you could **reconfigure the internal firewall**. It's
+    great when the ship can talk to itself."
+
+    "Thanks a million! You're the best!" Barry winks and vanishes with a
+    flourish.
+  exits:
+    l2-galley: Take a look around the galley
+
+- id: l2-galley
+  name: Galley
+  description: |
+    The galley buzzes with a mix of curiosity and mild concern. Passengers
+    exchange puzzled glances while soft instrumental music plays in the
+    background.
+
+    The walls are adorned with giant posters of the four **Daft Punk studio
+    albums**. Alongside them, vintage arcade machines hum quietly, offering
+    classics like "Space Invaders" and "Asteroid Blaster."
+
+    Cozy bean bag chairs and retro-futuristic lamps give the space a laid-back
+    vibe.
+
+    To your left, the entrance to the **Observation Lounge** beckons with a soft
+    glow. Down a corridor to the right lie the **Operations Deck** and what
+    appears to be **Sally's Office**.
+
+  exits:
+    l2-obs-lounge: Venture into the Observation Lounge
+    l2-sallys-office: Peek into Sally's Office
+    l2-ops-deck: Explore the Operations Deck
+
+- id: l2-obs-lounge
+  name: Observation Lounge
+  description: |
+    The Observation Lounge is a panoramic marvel, with floor-to-ceiling windows
+    showcasing the endless expanse of space. Stars twinkle against the velvet
+    darkness, and distant nebulae paint the horizon with swirls of color.
+
+    A large **Temperature Display** on the wall flickers oddly, showing an error
+    message:
+
+    > "Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://discovery/."
+
+    On a nearby table cluttered with crossword books, sudoku puzzles, and a
+    half-finished jigsaw puzzle of the Horsehead Nebula, you notice a napkin
+    with a scribbled note:
+
+    > r1bq1r2/pp1kbBpp/2np4/3Np3/Q7/8/PP3PPP/R1B2RK1 w - - 6 16 _(My favourite mate-in-1!)_
+  exits:
+    l2-galley: Head back to the galley
+
+- id: l2-sallys-office
+  name: Sally's Office
+  description: |
+    Sally's office is a sanctuary of organized chaos. Neatly stacked manuals and
+    technical guides line the shelves, covering topics from quantum computing to
+    "The Art of Unix Programming." A steaming mug with the slogan "Keep Calm and
+    Reboot" sits on the desk next to a meticulously maintained workstation.
+
+    Under the desk, a small server hums steadily. A label above the drive bay
+    reads **"life-support-001"** in tidy handwriting. One of the monitors displays a
+    login prompt, while another has a note stuck to it.
+
+  exits:
+    l2-sallys-note: Read the note on the monitor
+    l2-life-support-server: Examine the life-support server
+    l2-galley: Slip back to the galley
+
+- id: l2-sallys-note
+  name: Sally's Note
+  description: |
+    The note on the monitor reads:
+
+    > "Reminder: HQ switched to **67-bit encryption** on the comms channel.
+    Because 64 bits just wasn't enough. Double-check the initialization
+    vectors!"
+
+    It's clear that Sally keeps meticulous notes, likely to navigate the
+    ever-changing whims of corporate policies.
+  exits:
+    l2-sallys-office: Continue examining the office
+
+- id: l2-life-support-server
+  name: Life-Support Server
+  description: |
+    The terminal displays a README file:
+
+    > **Life-Support Microservices Initialization**
+    >
+    > To initialize the life-support microservices, please provide the
+    hostnames of all four services in order. Without this, microservices
+    will not be able to resolve each other's hostnames and life will
+    ultimately be... unsupported.
+
+    The cursor blinks, awaiting input.
+
+  lock:
+    prompt: "Enter hostnames:"
+    answer: homework discovery human_after_all random_access_memories
+    opens: l2-life-support-server
+    errors:
+      - "Incorrect. Did you even read the README?"
+      - "Wrong again. Maybe stick to tic-tac-toe."
+    hints:
+      - "Barry here! I've noticed that Sally named servers after her favorite music. She is human, after all."
+      - "Maybe those album posters in the galley are more than just decor?"
+      - "The hostnames are the titles of Daft Punk's four studio albums, in release order."
+  unlocked: |
+    ✅ The terminal displays:
+
+    > "Life-support microservice registry initialized."
+    >
+    > "Listening on **10.1.1.69**"
+
+    System diagnostics show all life-support functions are operational.
+
+  exits:
+    l2-sallys-office: Step back from the workstation
+
+- id: l2-ops-deck
+  name: Operations Deck
+  description: |
+    The Operations Deck is a hub of blinking lights and idle consoles. Screens
+    display system statuses, some with cheerful green checkmarks, others with
+    glaring red alerts.
+
+    Logs from an **oxygen supply monitor** contain a concerning message:
+
+    > "Error: cannot resolve random_access_memories - Unknown host"
+
+    A well-worn yellow book titled "**µTLS Encryptotron for Dummies**" lies open
+    on a console. Nearby, the **Communications Array** and the **Navigation
+    Computer** await attention. A sophisticated-looking **Firewall Configuration
+    Terminal** pulses softly.
+
+  exits:
+    l2-comms-array: Investigate the Communications Array
+    l2-navigation-computer: Access the Navigation Computer
+    l2-firewall-configuration: Tinker with the firewall settings
+    l2-dummies-book: Browse through the yellow book
+    l2-galley: Head back to the galley
+
+- id: l2-dummies-book
+  name: "µTLS Encryptotron for Dummies"
+  description: |
+    Flipping through the pages, a highlighted section catches your eye:
+
+    > *"Primes are paramount in cryptography! For enhanced security, the µTLS
+    Encryptotron uses a prime number for an Initialization Vector. The sum of
+    its digits equals the encryption bit length. For instance, for 32-bit
+    encryption, use the smallest prime whose digits sum to 32 — i.e. 6899
+    (6+8+9+9=32). Brilliantly secure!"*
+  exits:
+    l2-ops-deck: Close the book
+
+- id: l2-comms-array
+  name: Communications Array
+  description: |
+    This is a µTLS Encryptotron Communications Array. It displays a connection error:
+
+    > "Handshake failed: Invalid Initialization Vector"
+
+    A prompt awaits your input.
+
+  lock:
+    prompt: "Initialization Vector:"
+    answer: "59899999"
+    opens: l2-comms-array
+    errors:
+      - "Wrong IV. Did you forget how to count?"
+      - "Incorrect. Maybe cryptography isn't your thing."
+    hints:
+      - "Barry chiming in! Have you read the µTLS Encryptotron for Dummies book?"
+      - "Did Sally note how many bits HQ is using for encryption now?"
+      - "The Initialization Vector is the smallest prime number whose digits sum to 67. Ruby's Prime.each method might help."
+  unlocked: |
+    ✅ The console shows:
+
+    > "Connection established with Aphelion Adventures HQ."
+
+    Amidst the scrolling text, you notice:
+
+    > "Listening on address: **192.168.1.24**"
+
+  exits:
+    l2-ops-deck: Step away from the console
+
+- id: l2-navigation-computer
+  name: Navigation Computer
+  description: |
+    The Navigation Computer greets you with a Windows XP login screen. The
+    username **Sally** is displayed beside a chess icon, along with a password
+    field.
+
+  lock:
+    prompt: "Enter Password:"
+    answer: "Qg4#"
+    opens: l2-navigation-computer
+    errors:
+      - "Access denied. Maybe try 'password123' next time?"
+      - "Incorrect. Brute force won't help you here."
+    hints:
+      - "Barry here! Perhaps Sally's love for chess holds the key?"
+      - "Did you see any chess notation scribbled somewhere?"
+      - "The chess notation on that napkin translates to a board setup. Try analysing the board using a popular chess website. The next move must be the password."
+  unlocked: |
+    ✅ The desktop loads, cluttered with folders named "Project_Final_V2" and "Do_Not_Delete."
+
+    A terminal window displays:
+
+    > "com.aphelion.navigation.tomcat.TomcatWebServer : [navigator] initialized"
+
+    Among the details, you spot:
+
+    > "Listening on address: **193.167.1.111**"
+
+  exits:
+    l2-ops-deck: Continue exploring the Operations Deck
+
+- id: l2-firewall-configuration
+  name: Firewall Configuration Terminal
+  description: |
+    The firewall GUI displays a prompt:
+
+    > "VCYVFG"
+
+    An input field blinks, waiting for your response. The help text reads:
+
+    > *The 3 entries must be ordered numerically.*
+
+  lock:
+    prompt: "Entries:"
+    answer: "10.1.1.69 192.168.1.24 193.167.1.111"
+    opens: l2-reboot-successful
+    errors:
+      - "Invalid input. Did you let a toddler type that?"
+      - "Access list rejected. Networking not your strong suit?"
+    hints:
+      - "Barry here! Perhaps the prompt is encoded?"
+      - "Maybe try a simple cipher like ROT13."
+      - "'VCYVFG' decoded is 'IPLIST'. Enter the 3 IP addresses you've found in numeric order."
+  exits:
+    l2-ops-deck: Leave the terminal
+
+- id: l2-reboot-successful
+  name: Operations Deck
+  description: |
+    ✅ Systems across the ship flicker back to life. Lights brighten, and
+    monitors display reassuring green statuses.
+
+    Barry reappears, clapping enthusiastically. "Fantastic work, everyone! I
+    knew you lot could get it done!"
+
+    He continues, "Just one *teeny-tiny* issue left — a minor disturbance with
+    the sensor array. Something external is causing a bit of interference.
+    Nothing to fret over!"
+
+    "We'll just need you to pop outside and give it a little tweak. But first,
+    we'll have to shut down the drive for safety. It's all standard procedure,
+    probably in the manual somewhere — though that might be a few versions out of
+    date."
+
+    A hatch slides open in the floor, revealing a ladder leading down to the
+    engine room.
+
+  exits:
+    l3-engineering: Descend into LEVEL 3

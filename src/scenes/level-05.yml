@@ -1,0 +1,78 @@
+#
+# Level 5: Back to the cabin
+#
+# They plyaer has done the hard part now. Ostensibly, they just need to restart
+# the engine before they can celebrate. In practice though, the player's
+# character is going to get distracted and have a drink. They'll then end up in
+# the time loop perhaps realising that their removal of the artefact didn't
+# really solve the problem.
+#
+- id: l5-get-magboots
+  name: "Outside the ship"
+  description: |
+    Finding your way back to the airlock is much faster now that you know the
+    way. You cycle the airlock and start spinning down the corridors rather
+    recklessly. Like a school kid on a shopping trolley, the novelty of gliding
+    has somewhat gone to your head.
+  exits:
+    l5-your-cabin-float: Float backwards through the door to your cabin
+
+- id: l5-your-cabin-float
+  name: "Cabin 23-B"
+  description: |
+    Somehow, the cabin seems smaller when you're floating in it. The lack of
+    gravity adds a new dimension to the familiar space.
+
+    Your locker hangs above you. A crumpled post-it note tumbles lazily in the
+    air. It must have fallen behind the locker at some point. Written on it, in
+    your unmistakable handwriting, are the numbers:
+
+    > **1234**
+
+    You wonder what it could be for.
+  exits:
+    l5-your-locker-keypad-float: Twist awkwardly to the keypad
+
+- id: l5-your-locker-keypad-float
+  name: Your Cabin Locker
+  description: |
+    The keypad glows unenthusiastically, awaiting your input.
+  lock:
+    prompt: "Enter 4-digit locker code:"
+    answer: ""
+    opens: l5-your-locker
+    errors:
+      - "Access denied. Wrong password."
+      - "Incorrect. Maybe think harder."
+    hints:
+      - "Really?"
+  exits:
+    l5-your-cabin-float: Bounce off in frustration
+
+- id: l5-your-locker
+  name: Your Open Locker
+  description: |
+    You open your locker. The magboots are tumbling slowly behind a half-empty
+    bottle of **Ol' Janx Spirit**. It occurs to you that you've never tried to
+    mix a Pan Galactic Gargle Blaster on the float before.
+
+    Now that the emergency is over, you feel a little more relaxed. You could use a drink.
+
+    Surely the drive can wait a little longer.
+  exits:
+    l5-a-drink: Against your better judgment, mix a drink
+
+- id: l5-a-drink
+  name: One Drink In
+  description: |
+    You mix the **Pan Galactic Gargle Blaster** as if you've done it a thousand
+    times before. You drink it... carefully.
+
+    It feels, as they say, like having your brains smashed out by a slice of
+    lemon wrapped around a large gold brick.
+
+    You feel better now, more confident, more alive. You consider looking for
+    the others to celebrate your success. But first...
+
+  exits:
+    a-hazy-return: "Just one more drink…"

@@ -1,6 +1,7 @@
 import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from "fs";
+import { parse } from 'yaml'
 
 const base64Loader: Plugin = {
   name: "base64-loader",
@@ -18,8 +19,20 @@ const base64Loader: Plugin = {
   },
 };
 
+// A plugin to load .yaml/yml files and convert them to JSON
+const yamlLoader: Plugin = {
+  name: "yaml-loader",
+  transform(file: string, id: string) {
+    if (!id.endsWith(".yaml") && !id.endsWith(".yml")) return null;
+
+    const data = parse(file);
+
+    return `export default ${JSON.stringify(data)};`;
+  },
+};
+
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [base64Loader, react()],
+  plugins: [base64Loader, yamlLoader, react()],
 })

@@ -1,0 +1,274 @@
+#
+# Level 4: The exterior of the ship.
+#
+# This level is about exploring the exterior of the ship. The player will need
+# to navigate around the ship to reach the sensor array. The player can move in
+# four directions: port, starboard, forward, and aft. It's never explicitly
+# stated that the ship is round, but as the player moves to the left or right,
+# they will swap between the dorsal and ventral sides of the ship. The player
+# can see the sun from the dorsal side of the ship, and jupiter from the ventral
+# side.
+#
+# The player will need to navigate around the ship to reach the sensor array.
+#
+# p - port, s - starboard, d - dorsal, v - ventral
+#
+# Once they get to the sensor array, they need to find the 'fundamental frequency'
+# of the artefacts phase harmonics. The player can find the frequency by reading
+# the sonic screwdriver terminals. These will be a base64 encoded .wav file and a
+# PNG of a sine wave. They player can use one of a number of techniques to determine
+# the frequency from the PNG graph or the WAV file. The answer is 440Hz.
+#
+---
+
+- id: l4-spacewalk
+  name: Exterior Airlock
+  description: |
+    You step out of the airlock into the vastness of space. The stars shine
+    brilliantly against the infinite black, and the gentle curve of *The
+    Gemstone of the Skies* stretches out before you.
+
+    Barry's voice comes through your helmet comms, as enthusiastic as ever.
+    "Isn't it breathtaking? A perfect evening for a spacewalk! Now, we just need
+    you to locate the **sensor array** and give it a little tweak. Easy as pie!"
+
+    He adds, "Remember, safety first! But also, fun first!"
+
+  exits:
+    l4-d-aft: Carefully pull yourself along the hull
+
+- id: l4-d-aft
+  name: Aft Section
+  description: |
+    You find yourself on the ship's aft section. The hull beneath your feet is
+    smooth, with occasional protrusions housing various instruments. Above you,
+    the **Sun** glows faintly, a tiny but brilliant point of light.
+
+    Glancing around, you see no sign of the sensor array here. The vastness of
+    space surrounds you, and the ship stretches ahead.
+
+  exits:
+    l4-s-tail: go right
+    l4-p-tail: go left
+    l4-d-mid1: go forward
+
+- id: l4-s-tail
+  name: Starboard Tail Section
+  description: |
+    The tail section here is adorned with antennae and thrusters, but the sensor
+    array is nowhere to be seen.
+
+  exits:
+    l4-v-aft: go right
+    l4-d-aft: go left
+
+- id: l4-v-aft
+  name: Aft Section
+  description: |
+    On the ship's aft, you feel a slight disorientation as you adjust your
+    perspective. In the distance, **Jupiter** dominates the starfield, its
+    swirling storms faintly visible.
+
+    The sensor array isn't located here, but the view is spectacular.
+  exits:
+    l4-p-tail: go right
+    l4-s-tail: go left
+    l4-v-mid1: go forward
+
+- id: l4-p-tail
+  name: Port Tail Section
+  description: |
+    This area is relatively featureless, with only essential maintenance panels
+    dotting the hull.
+
+    There's no sign of the sensor array here.
+
+  exits:
+    l4-d-aft: go right
+    l4-v-aft: go left
+
+# The first midships of the ship
+
+- id: l4-d-mid1
+  name: Amidships
+  description: |
+    You reach the midship area. The ship's structure widens here, and you can
+    see various equipment mounted along the hull.
+
+    The Sun is overhead, guiding your path. Still, the sensor array
+    eludes you.
+
+  exits:
+    l4-v-mid1: go right
+    l4-v-mid1_: go left
+    l4-d-mid2: go forward
+    l4-d-aft: go aft
+
+- id: l4-v-mid1
+  name: Amidships
+  description: |
+    The hull curves gently beneath you. **Jupiter** looms large, its presence a
+    constant reminder of your location.
+
+    The sensor array isn't here, but you sense you're getting closer.
+  exits:
+    l4-d-mid1: go right
+    l4-d-mid1_: go left
+    l4-v-mid2: go forward
+    l4-v-aft: go aft
+
+# The second midships of the ship
+
+- id: l4-d-mid2
+  name: Amidships
+  description: |
+    You reach a section where the ship's design becomes more complex. Arrays of
+    panels and conduits suggest critical systems are nearby.
+
+    You can still make out the Sun, a distant but comforting presence.
+  exits:
+    l4-s-wing: go right
+    l4-p-wing: go left
+    l4-d-bow: go forward
+    l4-d-mid1: go aft
+
+- id: l4-s-wing
+  name: Starboard Wing
+  description: |
+    You arrive at the starboard wing, which extends gracefully from the main
+    body of the ship. Embedded along its edge is the **sensor array**, a series
+    of delicate instruments and antennae glowing faintly.
+
+  exits:
+    l4-v-mid2: go right
+    l4-d-mid2: go left
+    sensor-array: plug the sonic screwdriver into the sensor array
+
+- id: l4-v-mid2
+  name: Amidships
+  description: |
+    The ship's design is intricate here, with various panels and conduits
+    suggesting critical systems are nearby.
+
+    **Jupiter** is visible in the distance, a constant reminder of your location.
+  exits:
+    l4-p-wing: go right
+    l4-s-wing: go left
+    l4-v-bow: go forward
+    l4-v-mid1: go aft
+
+- id: l4-p-wing
+  name: The port wing
+  description: |
+    You find yourself on the port wing, which extends gracefully from the main
+    body of the ship. A number of delicate instruments and antennae are embedded
+    along its edge, glowing faintly. None of them are the sensor array, however.
+  exits:
+    l4-d-mid2: go right
+    l4-v-mid2: go left
+
+# The fore of the ship
+
+- id: l4-d-bow
+  name: The bow of the ship
+  description: |
+    The bow of the ship is a sleek, pointed structure that extends into the
+    void. The sensor array isn't here, but the view is vertigo-inducing.
+
+    The Sun is visible high above, too faint to cast any shadows.
+  exits:
+    l4-v-bow: go right
+    l4-v-bow_: go left
+    l4-nose: go forward
+    l4-d-mid2: go aft
+
+- id: l4-v-bow
+  name: The bow of the ship
+  description: |
+    The ship's bow angles slightly towards the gas giant **Jupiter**, its
+    swirling storms visible in the distance.
+
+    The sensor array isn't here, and the planet looms larger each time you look.
+  exits:
+    l4-d-bow: go right
+    l4-d-bow_: go left
+    l4-nose: go forward
+    l4-v-mid2: go aft
+
+- id: l4-nose
+  name: The ship's nose
+  description: |
+    You reach the ship's nose, a bulbous structure that houses many of the
+    ship's antennae and communication arrays.
+
+    A bright red ruby is embedded in the nosecone.
+  exits:
+    l4-d-bow: go aft
+    l4-v-bow: go the other aft
+
+# The highly sensitive  sensor array has been overwhelmed by some an extrasolar radiation source
+# unstable tachyons, causing quantum rifts in space-time
+# We need to find the fundamental frequency of the artefacts phase harmonics.
+- id: sensor-array
+  name: Sensor Array Interface
+  description: |
+    Lights flicker, and a small display activates, showing erratic readings and
+    waveforms.
+
+    Barry chimes in, "Seems the sensor array is being overwhelmed by some pesky
+    external interference! I'm detecting some unstable tachyons, perhaps causing
+    quantum rifts in space-time.
+
+    If we can identify the **frequency** of the interference, we can
+    calibrate the array to filter it out."
+
+    The interface awaits your input.
+  lock:
+    prompt: "Enter frequency (Hz):"
+    answer: "440"
+    opens: l4-success
+    errors:
+      - "Incorrect frequency. Did you skip music class?"
+      - "Nope. Maybe try tuning in better."
+    hints:
+      - "Barry here! Looks like the sonic screwdriver terminals are outputting binary data that's base64-encoded."
+      - "I think I see a clue to the file type in the first few bytes of each file."
+      - "You should have a visual and audio representation of the frequency. There are many approaches to working out the frequency. You're on your own from here!"
+  exits:
+    screwdriver-t1: Access sonic screwdriver terminal 1
+    screwdriver-t2: Access sonic screwdriver terminal 2
+    l4-s-wing: Disconnect the screwdriver
+
+- id: screwdriver-t1
+  name: Sonic Screwdriver Terminal 1
+  description: ""
+  file: data/tone.wav
+  exits:
+    screwdriver-t2: Switch to terminal 2
+    sensor-array: Return to the sensor array interface
+
+- id: screwdriver-t2
+  name: Sonic Screwdriver Terminal 2
+  description: ""
+  file: data/tone.png
+  exits:
+    screwdriver-t1: Switch back to terminal 1
+    sensor-array: Return to the sensor array interface
+
+- id: l4-success
+  name: Sensor Array
+  description: |
+    ✅ The sensor array lights stabilize, and readings return to normal. Barry's
+    voice fills your helmet with delight. "Fantastic! You've done it! The
+    interference is gone, and the sensor array is back online. I knew you had it
+    in you!"
+
+    "Now, with everything shipshape, how about we head back inside? A
+    celebratory drink sounds perfect, doesn't it?"
+
+    He adds, "Oh, and before we get too cozy, we'll need to restart the ship's drive.
+    But no rush! Maybe grab your **magboots** from your locker when you're back
+    onboard."
+
+  exits:
+    l5-get-magboots: Drift back toward the airlock on LEVEL 5
