@@ -24,7 +24,7 @@ function Scene({ scene, onUnlock, onExit }: {
     <div>
       <h1>{scene.name}</h1>
 
-      {scene.file && <textarea readOnly cols={60} rows={20} >{btoa(scene.file)}</textarea>}
+      {scene.file && <textarea readOnly cols={60} rows={20} value={scene.file}></textarea>}
 
       {isUnlocked && scene.unlocked ? (
         <Markdown>{scene.unlocked}</Markdown>
