@@ -1,0 +1,82 @@
+[
+  {
+    "id": "a-hazy-return",
+    "description": "Consciousness gradually returns. You feel slightly groggy. How much time has passed?\n",
+    "exits": {
+      "l1-waking-up": "wake up, slowly"
+    }
+  },
+  {
+    "id": "l1-waking-up",
+    "name": "Cabin 23-B",
+    "description": "You open your eyes to the cozy confines of your cabin. The delightful burn\nof a Pan Galactic Gargle Blaster still tingles on your tongue. A\npeculiar sense of déjà vu washes over you. Your head throbs in sync with the\nship's drive.\n\nWait — the ship's drive?! Wasn't it off? Flashes of memory flicker:\nfloating weightless in the void, the dizzying spin of distant stars,\nsearching for... something.\n\nSuddenly, a cheerful voice chirps over the intercom:\n\n\"Good morning, esteemed passengers! Welcome to day **NaN** of your voyage.\nAphelion Adventures is *delighted* to announce that we'll soon reach the\nmajestic **Jovian system**! Please report to the galley for a small\nemergency meeting at your earliest convenience. And remember, **DON'T\nPANIC!**\"\n",
+    "exits": {
+      "l1-your-cabin": "Get up"
+    }
+  },
+  {
+    "id": "l1-your-cabin",
+    "name": "Cabin 23-B",
+    "description": "Your cabin is cozy, adorned with retro-futuristic decor that harkens back to\na time that never was. The gentle hum of the ship's drive is oddly\nsoothing. Through the porthole, **Jupiter** looms, a marbled jewel just a\nbit smaller than Earth's moon from this distance.\n\nIn the corner stands your personal locker, its keypad glowing. A\ndoor leads out to the corridor.\n",
+    "exits": {
+      "l1-your-locker-keypad": "Check your locker",
+      "l1-corridor": "Go through the door"
+    }
+  },
+  {
+    "id": "l1-your-locker-keypad",
+    "name": "Your Cabin Locker",
+    "description": "The keypad on your locker glows unenthusiastically. You stare at it, but the\naccess code eludes you. No worries — you're certain it'll come back to you\neventually.\n",
+    "exits": {
+      "l1-your-cabin": "Give up for now"
+    }
+  },
+  {
+    "id": "l1-corridor",
+    "name": "Corridor",
+    "description": "The corridor stretches out before you, lined with identical doors leading to\nother passengers' cabins. Soft lighting casts a warm glow, and the carpet\nis needlessly plush. At the far end, the access hatch to the\ngalley is firmly closed.\n\nHalfway down, you notice a cabin door slightly ajar, a blue-green glow\nspilling into the hallway. Passenger cabins are strictly private, of\ncourse.\n",
+    "exits": {
+      "l1-access-hatch": "Try to open the access hatch",
+      "l1-other-cabin": "Sneak into the open cabin",
+      "l1-your-cabin": "Return to your cabin"
+    }
+  },
+  {
+    "id": "l1-other-cabin",
+    "name": "A Cabin You Shouldn't Be In",
+    "description": "You slip quietly into the vacant cabin. It's a mirror image of your own, but\nwith an eclectic assortment of souvenirs scattered about. On the\nwall-mounted screen, a paused TV show displays the title: **\"S01E18 -\nNumbers\"**.\n\nCurious. Perhaps the occupant was catching up on some classic entertainment\nbefore the meeting.\n",
+    "exits": {
+      "l1-corridor": "Leave the cabin (before anyone notices)"
+    }
+  },
+  {
+    "id": "l1-access-hatch",
+    "name": "Access Hatch to the Galley",
+    "description": "The access hatch stands before you, its keypad awaiting input. A small sign\nabove reads: \"**Authorized Passengers Only**.\" Looks like you'll need a\n**10-digit access code** to proceed.\n\nHow does anyone remember a 10-digit code?\n",
+    "lock": {
+      "prompt": "Access Code:",
+      "answer": "4815162342",
+      "opens": "l1-galley-access",
+      "errors": [
+        "Access Denied. Stop wasting my time.",
+        "Incorrect. Did you forget the code already?"
+      ],
+      "hints": [
+        "Hmm… let me think. Maybe the other passengers needed a reminder of the code before they left their cabin?",
+        "Okey dokey, did you try looking up the name of that TV episode?",
+        "Ah ha! The code is the sequence of numbers featured in the TV show *Lost*, Season 1, Episode 18."
+      ]
+    },
+    "exits": {
+      "l1-corridor": "Go back down the corridor"
+    }
+  },
+  {
+    "id": "l1-galley-access",
+    "name": "Access Hatch to the Galley",
+    "description": "✅ The access panel flashes green, and the hatch opens with a satisfying\nhiss.  A short ladder descends into the galley below. You can hear the faint\nmurmur of voices. Time to see what's so \"emergency\" about this meeting.\n",
+    "exits": {
+      "l2-galley-meeting": "Descend into LEVEL 2"
+    }
+  }
+]
