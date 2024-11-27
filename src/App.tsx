@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Home from './Home'
 import Scene from './Scene'
@@ -10,6 +10,13 @@ const initialSceneId = window.location.pathname.replace(/^\/scene\//, '') || ''
 function App() {
   const [sceneId, setSceneId] = useState(initialSceneId)
   const scene = scenes.find(scene => scene.id === sceneId)
+
+  // Load the scene when the URL changes
+  useEffect(() => {
+    window.addEventListener('popstate', () => {
+      setSceneId(window.location.pathname.replace(/^\/scene\//, ''))
+    })
+  }, [])
 
   const loadScene = (id: string) => {
     window.history.pushState({}, '', `/scene/${id}`);
