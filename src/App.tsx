@@ -8,6 +8,7 @@ import scenes from './scenes'
 const initialSceneId = window.location.pathname.replace(/^\/scene\//, '') || ''
 
 function App() {
+  const [className, setClassName] = useState('')
   const [sceneId, setSceneId] = useState(initialSceneId)
   const scene = scenes.find(scene => scene.id === sceneId)
 
@@ -20,6 +21,7 @@ function App() {
 
   const loadScene = (id: string) => {
     window.history.pushState({}, '', `/scene/${id}`);
+    if (id === 'a-hazy-return') setClassName('fade-in')
     setSceneId(id)
   }
 
@@ -28,13 +30,18 @@ function App() {
   }
 
   const handleExit = (nextSceneId: string) => {
-    loadScene(nextSceneId)
+    if (nextSceneId == 'a-hazy-return') {
+      setClassName('fade-out')
+      setTimeout(() => loadScene('a-hazy-return'), 2000)
+    } else {
+      loadScene(nextSceneId)
+    }
   }
 
   if (!scene) {
     return <Home onBegin={() => loadScene(scenes[0].id)} />
   } else {
-    return <Scene scene={scene} onUnlock={handleUnlock} onExit={handleExit} />
+    return <Scene scene={scene} onUnlock={handleUnlock} onExit={handleExit} className={className} />
   }
 }
 

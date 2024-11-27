@@ -3,8 +3,9 @@ import Markdown from 'react-markdown'
 import { IScene } from './scenes'
 import Lock from './Lock'
 
-function Scene({ scene, onUnlock, onExit }: {
+function Scene({ scene, className, onUnlock, onExit }: {
   scene: IScene,
+  className: string,
   onUnlock: () => void,
   onExit: (nextSceneId: string) => void
 }) {
@@ -21,7 +22,7 @@ function Scene({ scene, onUnlock, onExit }: {
   }
 
   return (
-    <div>
+    <div className={className}>
       <h1>{scene.name}</h1>
 
       {scene.file && <textarea readOnly cols={60} rows={20} value={scene.file}></textarea>}
