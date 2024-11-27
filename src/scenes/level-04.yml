@@ -242,7 +242,7 @@
 - id: screwdriver-t1
   name: Sonic Screwdriver Terminal 1
   description: ""
-  file: data/tone.wav
+  file: tone.wav
   exits:
     screwdriver-t2: Switch to terminal 2
     sensor-array: Return to the sensor array interface
@@ -250,7 +250,7 @@
 - id: screwdriver-t2
   name: Sonic Screwdriver Terminal 2
   description: ""
-  file: data/tone.png
+  file: tone.png
   exits:
     screwdriver-t1: Switch back to terminal 1
     sensor-array: Return to the sensor array interface
