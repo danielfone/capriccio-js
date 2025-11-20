@@ -10,7 +10,7 @@ const initialSceneId = window.location.pathname.replace(/^\/scene\//, '') || ''
 function App() {
   const [className, setClassName] = useState('')
   const [sceneId, setSceneId] = useState(initialSceneId)
-  const scene = scenes.find(scene => scene.id === sceneId)
+  const scene = scenes.find(scene => scene.id === sceneId.replace(/_$/, ''))
 
   // Load the scene when the URL changes
   useEffect(() => {
