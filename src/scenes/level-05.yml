@@ -39,7 +39,7 @@
     The keypad glows unenthusiastically, awaiting your input.
   lock:
     prompt: "Enter 4-digit locker code:"
-    answer: ""
+    answer: "1234"
     opens: l5-your-locker
     errors:
       - "Access denied. Wrong password."
