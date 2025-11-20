@@ -2,6 +2,7 @@ import Markdown from 'react-markdown'
 
 import { IScene } from './scenes'
 import Lock from './Lock'
+import useLocalStorage from './useLocalStorage';
 
 function Scene({ scene, className, onUnlock, onExit }: {
   scene: IScene,
@@ -9,9 +10,8 @@ function Scene({ scene, className, onUnlock, onExit }: {
   onUnlock: () => void,
   onExit: (nextSceneId: string) => void
 }) {
-
   const lock = scene.lock;
-  const isUnlocked = false
+  const [isUnlocked, setIsUnlocked] = useLocalStorage(`scene-unlocked-${scene.id}`, false);
 
   const handleExitClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     const path = event.currentTarget.pathname;
@@ -20,6 +20,11 @@ function Scene({ scene, className, onUnlock, onExit }: {
     event.preventDefault();
     onExit(id);
   }
+
+  const handleUnlock = () => {
+    setIsUnlocked(true);
+    onUnlock(); // Proceed to the next scene
+  };
 
   return (
     <div className={className}>
@@ -32,7 +37,7 @@ function Scene({ scene, className, onUnlock, onExit }: {
       ) : (
         <>
           <Markdown>{scene.description}</Markdown>
-          {lock && <Lock lock={lock} onUnlock={onUnlock} />}
+          {lock && <Lock lock={lock} onUnlock={handleUnlock} />}
         </>
       )}
 
